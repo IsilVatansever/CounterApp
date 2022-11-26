@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">Sayac Uygulmasi</string>
     <string name="splash_screen_text">Işıl Vatansever\n201813709066</string>
+    <string name="counter_intial_value">0</string>
+    <string name="btn_increment_text">+</string>
+    <string name="btn_decrement_text">-</string>
 </resources>
