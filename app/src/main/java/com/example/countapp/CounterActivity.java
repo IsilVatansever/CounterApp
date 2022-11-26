@@ -3,6 +3,10 @@ package com.example.countapp;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
+import android.hardware.Sensor;
+import android.hardware.SensorEvent;
+import android.hardware.SensorEventListener;
+import android.hardware.SensorManager;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.media.RingtoneManager;
@@ -16,15 +20,25 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.io.IOException;
 
 public class CounterActivity extends AppCompatActivity {
+    private SensorManager sm;
+    private float acelVal,acelLast,shake;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_counter);
+
+        sm=(SensorManager) getSystemService(Context.SENSOR_SERVICE);
+        sm.registerListener(sensorListener,sm.getDefaultSensor(Sensor.TYPE_ACCELEROMETER), SensorManager.SENSOR_DELAY_NORMAL);
+
+        acelVal=SensorManager.GRAVITY_EARTH;
+        acelLast=SensorManager.GRAVITY_EARTH;
+        shake=0.00f;
     }
     Integer max_counter_value = 50;
     Integer min_counter_value = 0;
@@ -109,7 +123,7 @@ public class CounterActivity extends AppCompatActivity {
                 {
                     mp.release();
                 }
-                
+
             });
             mediaPlayer.start();
         } catch (IllegalArgumentException e) {
@@ -122,4 +136,31 @@ public class CounterActivity extends AppCompatActivity {
             e.printStackTrace();
         }
     }
+
+    private final SensorEventListener sensorListener = new SensorEventListener() {
+        @Override
+        public void onSensorChanged(SensorEvent event) {
+            float x =event.values[0];
+            float y =event.values[1];
+            float z =event.values[2];
+            acelLast=acelVal;
+            acelVal=(float) Math.sqrt((double) (x*x)+(y*y)+(z*z));
+            float delta= acelVal-acelLast;
+            shake =shake*1f+delta;
+
+
+            if(shake>8){
+                TextView counter_text = (TextView)findViewById(R.id.tv_counter);
+                counter_text.setText("0");
+            }
+        }
+
+        @Override
+        public void onAccuracyChanged(Sensor sensor, int i) {
+            
+        }
+
+    };
+
+
 }
