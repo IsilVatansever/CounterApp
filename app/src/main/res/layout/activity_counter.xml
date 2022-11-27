@@ -40,4 +40,13 @@
         app:layout_constraintHorizontal_bias="0.441"
         app:layout_constraintStart_toEndOf="@+id/tv_counter"
         app:layout_constraintTop_toTopOf="@+id/tv_counter" />
+
+    <Button
+        android:id="@+id/btn_settings"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/btn_settings"
+        tools:layout_editor_absoluteX="274dp"
+        tools:layout_editor_absoluteY="64dp" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

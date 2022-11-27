@@ -4,4 +4,6 @@
     <string name="counter_intial_value">0</string>
     <string name="btn_increment_text">+</string>
     <string name="btn_decrement_text">-</string>
+    <string name="btn_settings">Ayarlar</string>
+    <string name="switch_notifications">Limit Uyarıları</string>
 </resources>
