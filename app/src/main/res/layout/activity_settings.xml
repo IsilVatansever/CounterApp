@@ -8,11 +8,26 @@
 
     <Switch
         android:id="@+id/switch_notifications"
-        android:layout_width="149dp"
-        android:layout_height="32dp"
+        android:layout_width="158dp"
+        android:layout_height="51dp"
         android:layout_marginStart="56dp"
         android:layout_marginTop="124dp"
         android:text="@string/switch_notifications"
+        android:textOff="@string/switch_off"
+        android:textOn="@string/switch_on"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btn_counter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="56dp"
+        android:layout_marginBottom="56dp"
+        android:onClick="counter_click"
+        android:text="@string/counter"
+        app:icon="@android:drawable/ic_menu_revert"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
